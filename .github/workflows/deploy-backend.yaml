@@ -25,12 +25,11 @@ jobs:
       run: go version
     - name: Install Beego
       run: go install github.com/beego/bee/v2@latest
-    - name: Go to directory
-      run: cd $GITHUB_WORKSPACE
-    - name: Install dependencies
-      run: go mod tidy
-    - name: Build application
-      run: go build -o app
+    - name: Install dependencies and build application
+      working-directory: backend
+      run: |
+        go mod tidy
+        go build -o app
     - name: Test SSH
       uses: appleboy/ssh-action@v1
       with:
