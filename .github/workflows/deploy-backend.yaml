@@ -42,6 +42,10 @@ jobs:
           echo $HOME
           mkdir -p public_html/test
           echo OK
+    - name: Move everything out of the backend directory
+      run: |
+        shopt -s dotglob
+        mv backend/* .
     - name: Deploy application
       uses: appleboy/scp-action@v1
       with:

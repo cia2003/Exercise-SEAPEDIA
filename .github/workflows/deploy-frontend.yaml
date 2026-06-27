@@ -43,6 +43,10 @@ jobs:
           cd ~
           rm -r public_html
           mkdir public_html
+    - name: Move everything out of the frontend directory
+      run: |
+        shopt -s dotglob
+        mv frontend/* .
     - name: Deploy standalone files
       uses: appleboy/scp-action@v1
       with:
