@@ -42,6 +42,16 @@ jobs:
           echo $HOME
           mkdir -p public_html/test
           echo OK
+    - name: Clear previous files
+      uses: appleboy/ssh-action@v1
+      with:
+        host: ${{ secrets.BACKEND_HOST }}
+        username: ${{ secrets.BACKEND_USER }}
+        key: ${{ secrets.BACKEND_KEY }}
+        script: |
+          cd ~
+          rm -r public_html
+          mkdir public_html
     - name: Move everything out of the backend directory
       run: |
         shopt -s dotglob
