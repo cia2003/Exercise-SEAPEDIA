@@ -3,7 +3,7 @@ name: Build & Deploy Frontend to DOM Cloud
 on:
   push:
     paths:
-      - frontend/**"
+      - "frontend/**"
     branches:
       - master
   workflow_dispatch:
