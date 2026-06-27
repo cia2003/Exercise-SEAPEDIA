@@ -1,0 +1,87 @@
+name: Build & Deploy Frontend to DOM Cloud
+
+on:
+  push:
+    paths:
+      - frontend/**"
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  copy:
+    runs-on: ubuntu-24.04-arm
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v5
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v2
+    - name: Install Bun
+      run: bun install
+    - name: Build release binary
+      run: bun run build
+    - name: Test SSH
+      uses: appleboy/ssh-action@v1
+      with:
+        host: ${{ secrets.FRONTEND_HOST }}
+        username: ${{ secrets.FRONTEND_USER }}
+        key: ${{ secrets.FRONTEND_KEY }}
+        script: |
+          whoami
+          pwd
+          echo $HOME
+          mkdir -p public_html/test
+          echo OK
+    - name: Clear previous files
+      uses: appleboy/ssh-action@v1
+      with:
+        host: ${{ secrets.FRONTEND_HOST }}
+        username: ${{ secrets.FRONTEND_USER }}
+        key: ${{ secrets.FRONTEND_KEY }}
+        script: |
+          cd ~
+          rm -r public_html
+          mkdir public_html
+    - name: Deploy standalone files
+      uses: appleboy/scp-action@v1
+      with:
+        host: ${{ secrets.FRONTEND_HOST }}
+        username: ${{ secrets.FRONTEND_USER }}
+        key: ${{ secrets.FRONTEND_KEY }}
+        port: 22
+        source: ".next/standalone"
+        target: "public_html"
+    - name: Deploy .next/static
+      uses: appleboy/scp-action@v1
+      with:
+        host: ${{ secrets.FRONTEND_HOST }}
+        username: ${{ secrets.FRONTEND_USER }}
+        key: ${{ secrets.FRONTEND_KEY }}
+        port: 22
+        source: ".next/static"
+        target: "public_html"
+    - name: Deploy public assets
+      uses: appleboy/scp-action@v1
+      with:
+        host: ${{ secrets.FRONTEND_HOST }}
+        username: ${{ secrets.FRONTEND_USER }}
+        key: ${{ secrets.FRONTEND_KEY }}
+        port: 22
+        source: "public"
+        target: "public_html"
+    - name: Reorder files and restart
+      uses: appleboy/ssh-action@v1
+      with:
+        host: ${{ secrets.FRONTEND_HOST }}
+        username: ${{ secrets.FRONTEND_USER }}
+        key: ${{ secrets.FRONTEND_KEY }}
+        script: |
+          cd ~/public_html
+          mv .next/standalone/node_modules node_modules/
+          mv .next/standalone/package.json package.json
+          mv .next/standalone/server.js server.js
+          shopt -s dotglob
+          mv .next/standalone/.next/* .next/
+          rm -r .next/standalone/
+          restart || true
+          
