@@ -4,11 +4,12 @@
 ```yaml
 source: clear
 features:
-  - node latest
+  - go
 nginx:
   root: public_html/public
   passenger:
     enabled: on
-    app_type: node
-    startup_file: server.js
+    app_root: /public_html/public
+    app_start_command: env PORT=$PORT ./app
+    app_type: generic
 ```
