@@ -5,6 +5,26 @@
     },
     "basePath": "/v1",
     "paths": {
+        "/account/account": {
+            "get": {
+                "tags": [
+                    "account"
+                ],
+                "description": "Tests the API\n\u003cbr\u003e",
+                "operationId": "AccountController.AccountEndpoint",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Account"
+                        }
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
         "/test/hello": {
             "get": {
                 "tags": [
@@ -27,6 +47,23 @@
         }
     },
     "definitions": {
+        "models.Account": {
+            "title": "Account",
+            "type": "object",
+            "properties": {
+                "Balance": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "IdAccount": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "Type": {
+                    "type": "string"
+                }
+            }
+        },
         "models.Test": {
             "title": "Test",
             "type": "object",
