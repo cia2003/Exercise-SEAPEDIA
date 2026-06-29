@@ -23,7 +23,7 @@ interface RatingDisplayProps extends ComponentPropsWithoutRef<"div"> {
   rating: number,
 };
 
-export default function RatingDisplay(props: RatingDisplayProps) {
+export function RatingDisplay(props: RatingDisplayProps) {
   var ratingValue = props.rating;
   return (
     <div className="rating">

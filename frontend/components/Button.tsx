@@ -1,6 +1,6 @@
 "use client";
-import { ReactNode } from 'react';
 import { Text } from '@/components/Text';
+import { ReactNode } from 'react';
 import { 
   Button as AriaButton,
   type ButtonProps as AriaButtonProps,
@@ -12,12 +12,13 @@ interface ButtonProps extends AriaButtonProps {
    * @default 'solid'
    */
   children?: ReactNode;
-  variant?: 'solid' | 'outline' | 'text';
+  className?: string;
+  variant?: 'solid' | 'outline' | 'text' | 'icon';
 }
 
-export default function Button({ children, variant = 'solid', ...props }: ButtonProps) {
+export function Button({ children, className, variant = 'solid', ...props }: ButtonProps) {
   return (
-    <AriaButton { ...props } className={`button-base button button--${variant}`} data-variant={variant}>
+    <AriaButton { ...props } className={`button-base button button--${variant} ${className}`} data-variant={variant}>
       <Text variant="button">{children}</Text>
     </AriaButton>
   );

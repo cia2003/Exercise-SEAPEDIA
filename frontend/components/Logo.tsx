@@ -5,7 +5,7 @@ const logoStyle = {
   height: 'auto',
 }
 
-export default function Logo() {
+export function Logo() {
   return (
     <Image
       src='/logo.svg'

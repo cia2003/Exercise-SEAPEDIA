@@ -1,20 +1,14 @@
 import { VBoxContainer } from "@/components/BoxContainer";
-import Button from "@/components/Button";
-import Logo from "@/components/Logo";
-import RatingDisplay from "@/components/Rating";
+import { Button } from "@/components/Button";
+import { Logo } from "@/components/Logo";
+import { InputField, SearchField } from "@/components/Input";
+import { RatingDisplay } from "@/components/Rating";
 import { Text, Link } from "@/components/Text";
+import { ChevronDown } from "lucide-react";
 
 export default () => {
   return (
     <div>
-      <VBoxContainer>
-        <RatingDisplay rating={0.8} />
-        <RatingDisplay rating={1.5} />
-        <RatingDisplay rating={2.2} />
-        <RatingDisplay rating={3.4} />
-        <RatingDisplay rating={4.9} />
-        <RatingDisplay rating={5.0} />
-      </VBoxContainer>
       <VBoxContainer>
         <Text variant="hero">Hero - The quick brown fox jumps over the lazy dog</Text>
         <Text variant="heading-1">Heading 1 - The quick brown fox jumps over the lazy dog</Text>
@@ -36,6 +30,19 @@ export default () => {
         <Button variant="solid">Button</Button>
         <Button variant="outline">Button</Button>
         <Button variant="text">Button</Button>
+        <Button variant="icon"><ChevronDown /></Button>
+      </VBoxContainer>
+      <VBoxContainer>
+        <SearchField placeholder="Search for will to live" />
+        <InputField placeholder="Your credit card number" />
+      </VBoxContainer>
+      <VBoxContainer>
+        <RatingDisplay rating={0.8} />
+        <RatingDisplay rating={1.5} />
+        <RatingDisplay rating={2.2} />
+        <RatingDisplay rating={3.4} />
+        <RatingDisplay rating={4.9} />
+        <RatingDisplay rating={5.0} />
       </VBoxContainer>
     </div>
   );

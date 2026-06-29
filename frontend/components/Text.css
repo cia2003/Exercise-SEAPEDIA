@@ -1,4 +1,5 @@
 .text {
+  color: var(--neutral-900);
   line-height: 1.5;
 }
 
@@ -46,6 +47,7 @@
 }
 
 .text-button {
+  color: inherit;
   font-size: calc(16rem / 16);
   font-weight: 500;
 }
@@ -56,6 +58,7 @@
 }
 
 .text-small-button {
+  color: inherit;
   font-size: calc(12rem / 16);
   font-weight: 500;
 }
