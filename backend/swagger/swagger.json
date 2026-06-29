@@ -1,0 +1,40 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "basePath": "/v1",
+    "paths": {
+        "/test/hello": {
+            "get": {
+                "tags": [
+                    "test"
+                ],
+                "description": "Tests the API\n\u003cbr\u003e",
+                "operationId": "TestController.TestEndpoint",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Test"
+                        }
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Test": {
+            "title": "Test",
+            "type": "object",
+            "properties": {
+                "Response": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
