@@ -60,6 +60,32 @@ definitions:
         format: double
       Type:
         type: string
+  models.Category:
+    title: Category
+    type: object
+    properties:
+      CreatedAt:
+        type: string
+        format: datetime
+      DeletedAt:
+        $ref: '#/definitions/gorm.DeletedAt'
+      Description:
+        type: string
+      ID:
+        type: integer
+        format: int32
+      IdParent:
+        type: integer
+        format: int32
+      Name:
+        type: string
+      Parent:
+        $ref: '#/definitions/models.Category'
+      UpdatedAt:
+        type: string
+        format: datetime
+      slug:
+        type: string
   models.Group:
     title: Group
     type: object

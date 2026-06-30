@@ -9,7 +9,7 @@ type Category struct {
 
 	Name 		string
 	Description *string
-	slug 		string
+	Slug 		string
 
 	IdParent 	*uint
 	Parent 		*Category 	`gorm:"foreignKey:IdParent"`
@@ -23,7 +23,7 @@ func GetSampleCategory() Category {
 		Name: "Electronic", 
 		Description: &description, 
 		Slug: "electronic",
-		IdParent: nil
+		IdParent: nil,
 
     }
 }
