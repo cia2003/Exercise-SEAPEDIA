@@ -1,11 +1,12 @@
 package models
 
 import (
-
+	"gorm.io/gorm"
+	"gorm.io/driver/postgres"
 )
 
 type Account struct {
-    IdAccount uint      `gorm:"primaryKey;column:id_account;autoIncrement"`
+    gorm.Model
     Type      string    `gorm:"column:type"`
     Balance   float64   `gorm:"column:balance"`
 

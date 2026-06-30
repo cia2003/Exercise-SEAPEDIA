@@ -31,8 +31,9 @@ func InitDB() {
 
 	DB = db
 
-	// auto migrate semua model
+	// Migrate the schema
 	DB.AutoMigrate(
-		&models.Account{},
+		// &models.Account{},
+		&models.Group{},
 	)
 }

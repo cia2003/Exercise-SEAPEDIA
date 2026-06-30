@@ -36,18 +36,12 @@ definitions:
   models.Account:
     title: Account
     type: object
-    properties:
-      Balance:
-        type: number
-        format: double
-      IdAccount:
-        type: integer
-        format: int32
-      Type:
-        type: string
+  models.Group:
+    title: Group
+    type: object
   models.Test:
     title: Test
     type: object
-    properties:
-      Response:
-        type: string
+  models.UserGroup:
+    title: UserGroup
+    type: object
