@@ -47,21 +47,76 @@
         }
     },
     "definitions": {
+        "gorm.DeletedAt": {
+            "title": "DeletedAt",
+            "type": "object"
+        },
+        "gorm.Model": {
+            "title": "Model",
+            "type": "object",
+            "properties": {
+                "CreatedAt": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "DeletedAt": {
+                    "$ref": "#/definitions/gorm.DeletedAt"
+                },
+                "ID": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "UpdatedAt": {
+                    "type": "string",
+                    "format": "datetime"
+                }
+            }
+        },
         "models.Account": {
             "title": "Account",
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "Balance": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "Type": {
+                    "type": "string"
+                }
+            }
         },
         "models.Group": {
             "title": "Group",
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "CreatedAt": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "DeletedAt": {
+                    "$ref": "#/definitions/gorm.DeletedAt"
+                },
+                "ID": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "Name": {
+                    "type": "string"
+                },
+                "UpdatedAt": {
+                    "type": "string",
+                    "format": "datetime"
+                }
+            }
         },
         "models.Test": {
             "title": "Test",
-            "type": "object"
-        },
-        "models.UserGroup": {
-            "title": "UserGroup",
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "Response": {
+                    "type": "string"
+                }
+            }
         }
     }
 }

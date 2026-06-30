@@ -2,7 +2,6 @@ package models
 
 import (
 	"gorm.io/gorm"
-	"gorm.io/driver/postgres"
 )
 
 type Group struct {
@@ -11,7 +10,7 @@ type Group struct {
 }
 
 func GetSampleGroup() Group {
-    return Account{
-		Name: "Seller"
+    return Group{
+		Name: "Seller",
     }
 }
